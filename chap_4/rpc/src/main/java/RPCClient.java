@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeoutException;
 
 public class RPCClient implements AutoCloseable {
@@ -50,7 +50,7 @@ public class RPCClient implements AutoCloseable {
                 properties,
                 message.getBytes(StandardCharsets.UTF_8)
         );
-        final BlockingDeque<String> response = (BlockingDeque<String>) new ArrayBlockingQueue<String>(1);
+        final BlockingQueue<String> response = new ArrayBlockingQueue<>(1);
         String tag = channel.basicConsume(
                 replyQueueName,
                 true,
