@@ -42,6 +42,11 @@ public class RPCServer {
                     int n = Integer.parseInt(message);
                     System.out.println("[.] fib(" + message + ")");
                     response.append(fib(n));
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException _ignored) {
+                        Thread.currentThread().interrupt();
+                    }
                 } catch (RuntimeException e) {
                     System.out.println("[.] " + e.toString());
                 } finally {
