@@ -1,0 +1,20 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "ds.soict.hust.com" {
+        type master;
+        file "/etc/bind/zones/db.ds.soict.hust.com";    # zone file path
+        allow-transfer { 172.19.0.21; };        # ns2 IP
+};
+
+zone "0.19.172.in-addr.arpa" {
+        type master;
+        file "/etc/bind/zones/db.172.19.0";     # 172.19.0.0/24 subnet
+        allow-transfer { 172.19.0.21; };        # ns2 IP
+};
+
